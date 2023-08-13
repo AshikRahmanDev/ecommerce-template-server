@@ -8,13 +8,7 @@ const { connectToServer } = require("./utils/dbConnect");
 app.use(cors());
 app.use(express.json());
 
-connectToServer((err)=>{
-  if(!err){
-    console.log("success")
-  }else{
-    console.log(err)
-  }
-})
+
 
 app.use("/products", productsRoute)
 

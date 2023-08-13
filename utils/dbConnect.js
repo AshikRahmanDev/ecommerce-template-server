@@ -2,29 +2,13 @@ const { MongoClient } = require("mongodb");
 const dotenv = require('dotenv');
 dotenv.config();
 const connectionString = process.env.ATLAS_URI;
-console.log(connectionString)
 const client = new MongoClient(connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-let dbConnection;
+const productsCollection=client.db('gadgetBazzer').collection("products")
 
-module.exports = {
-  connectToServer: function (callback) {
-    client.connect(function (err, db) {
-      if (err || !db) {
-        return callback(err);
-      }
-
-      dbConnection = db.db("gadgetBazzer");
-      console.log("Successfully connected to MongoDB.");
-
-      return callback();
-    });
-  },
-
-  getDb: function () {
-    return dbConnection;
-  },
-};
+module.exports ={
+  productsCollection
+}
