@@ -6,19 +6,9 @@ const { productsCollection } = require("../utils/dbConnect");
 const router =express.Router()
 // get all products
 router.get("/", async(req,res)=>{
-    const category=req.query.category
-    const query={}
-    if(category=="undefined"){
-        console.log("hit s")
-        const result = await productsCollection.find(query).toArray()
-        res.send(result)
-    }else{
-        console.log(category)
-        const filter={category:category}
-        const result = await productsCollection.find(filter).toArray()
-        res.send(result)
-        
-    }
+    const query ={}
+    const result = await productsCollection.find(query).toArray()
+    res.send(result)
 })
 // get products by brand name
 router.get("/category/:category",async(req,res)=>{
@@ -32,8 +22,7 @@ router.get("/category/:category",async(req,res)=>{
 // get product by id
 router.get("/:id", async(req,res)=>{
     const id = req.params.id
-    const query={_id: new
-         ObjectId(id)}
+    const query={_id: new ObjectId(id)}
     const result= await productsCollection.findOne(query)
     res.send(result)
 })
