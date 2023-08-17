@@ -7,8 +7,12 @@ const client = new MongoClient(connectionString, {
   useUnifiedTopology: true,
 });
 
-const productsCollection=client.db('gadgetBazzer').collection("products")
+const dataBase="gadgetBazaar"
+
+const productsCollection=client.db(dataBase).collection("products")
+const userCollection=client.db(dataBase).collection("users")
 
 module.exports ={
-  productsCollection
+  productsCollection,
+  userCollection
 }
