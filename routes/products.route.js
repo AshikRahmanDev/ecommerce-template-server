@@ -14,9 +14,7 @@ router.get("/", async(req,res)=>{
 router.get("/category/:category",async(req,res)=>{
     const category = req.params.category
     const query = {category:category}
-    console.log(query)
     const result =await productsCollection.find(query).toArray()
-    console.log(result.length)
     res.send(result)
 })
 // get product by id

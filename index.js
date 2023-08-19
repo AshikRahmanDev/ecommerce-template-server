@@ -18,7 +18,7 @@ app.use("/cart", cartRoute)
 
 
 app.get("/", (req, res) => {
-    res.send("automoli server is running");
+    res.send("gadget bazaar server is running");
 });
   
 app.listen(port, () => {
