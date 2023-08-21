@@ -20,7 +20,32 @@ router.post("/addUser", async(req,res)=>{
     res.send(result)
 })
 
-router.get("/",async(req,res)=>{
+router.get("/", async(req,res)=>{
+    try {
+        const email = req.query.email;
+        if(email){
+            const query = {email}
+            const result = await userCollection.findOne(query) || []
+            res.send(result)
+        }else{
+            console.log("hit");
+            res.send({
+            status:true,
+            message:"no user found"
+
+        })
+        }
+    } catch (error) {
+        console.log("hit");
+        res.send({
+        status:true,
+        message:"no user found"
+
+        })
+    }
+})
+
+router.get("/all",async(req,res)=>{
     const query = {}
     const result = await userCollection.find(query).toArray()
     res.send(result)
