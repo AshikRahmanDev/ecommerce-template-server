@@ -12,16 +12,23 @@ router.get("/", async(req,res)=>{
 })
 // get products by brand name
 router.get("/category/:category",async(req,res)=>{
-    const category = req.params.category
+    const category = req.params.category;
     const query = {category:category}
     const result =await productsCollection.find(query).toArray()
     res.send(result)
 })
 // get product by id
 router.get("/:id", async(req,res)=>{
-    const id = req.params.id
-    const query={_id: new ObjectId(id)}
-    const result= await productsCollection.findOne(query)
+    const id = req.params.id;
+    const query={_id: new ObjectId(id)};
+    const result= await productsCollection.findOne(query);
+    res.send(result)
+})
+
+// add product
+router.post("/create",async(req,res)=>{
+    const product = req.body;
+    const result = await productsCollection.insertOne(product);
     res.send(result)
 })
 
