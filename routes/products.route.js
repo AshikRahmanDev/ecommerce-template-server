@@ -32,4 +32,41 @@ router.post("/create",async(req,res)=>{
     res.send(result)
 })
 
+// delete product
+router.delete("/delete/:id",async(req,res)=>{
+    const id = req?.params?.id;
+    if(id){
+        const query= {_id: new ObjectId(id)}
+        const email = req?.query?.email;
+        const result = await productsCollection.deleteOne(query)
+        return res.send(result)
+    }
+    return res.send({status:"faild"})
+})
+
+// updateProduct
+router.put("/update/:id",async(req,res)=>{
+    const id = req.params.id
+    const product = req.body;
+    const {brand,category,color,description,discountPrice,image,name,price,specification,stock}=product;
+    const filter = {_id:new ObjectId(id)}
+    const options = { upsert: true };
+    
+    const updateDoc = {
+        $set: {
+          brand,
+          category,
+          color,
+          description,
+          discountPrice,
+          picture: image,
+          name,
+          price,
+          specification,
+          stock
+        },
+      };
+    const result = await productsCollection.updateOne(filter,updateDoc,options)
+    res.send(result)
+})
 module.exports = router

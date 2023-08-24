@@ -20,9 +20,11 @@ router.post("/addUser", async(req,res)=>{
     res.send(result)
 })
 
+// get user by email
 router.get("/", async(req,res)=>{
     try {
         const email = req.query.email;
+        
         if(email){
             const query = {email}
             const result = await userCollection.findOne(query) || []
@@ -50,5 +52,8 @@ router.get("/all",async(req,res)=>{
     const result = await userCollection.find(query).toArray()
     res.send(result)
 })
+
+
+
 
 module.exports = router 
