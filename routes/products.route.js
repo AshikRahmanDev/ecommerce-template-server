@@ -10,6 +10,12 @@ router.get("/", async(req,res)=>{
     const result = await productsCollection.find(query).toArray()
     res.send(result)
 })
+// get all products
+router.get("/home", async(req,res)=>{
+    const query ={}
+    const result = await productsCollection.find(query).limit(6).toArray()
+    res.send(result)
+})
 // get products by brand name
 router.get("/category/:category",async(req,res)=>{
     const category = req.params.category;

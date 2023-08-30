@@ -12,9 +12,11 @@ const dataBase="gadgetBazaar"
 const productsCollection=client.db(dataBase).collection("products")
 const userCollection=client.db(dataBase).collection("users")
 const sliderCollection=client.db(dataBase).collection("slider")
+const advertiseCollection=client.db(dataBase).collection("advertise")
 
 module.exports ={
   productsCollection,
   userCollection,
-  sliderCollection
+  sliderCollection,
+  advertiseCollection
 }
