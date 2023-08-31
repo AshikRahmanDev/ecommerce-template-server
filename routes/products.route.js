@@ -13,7 +13,7 @@ router.get("/", async(req,res)=>{
 // get all products
 router.get("/home", async(req,res)=>{
     const query ={}
-    const result = await productsCollection.find(query).limit(6).toArray()
+    const result = await productsCollection.find(query).limit(8).toArray()
     res.send(result)
 })
 // get products by brand name
