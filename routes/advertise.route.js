@@ -36,5 +36,20 @@ router.post("/create",async(req,res)=>{
     res.send(result)
 })
 
+// remove advertise
+router.delete("/remove/:id",async(req,res)=>{
+  const id = req.params.id
+  const productQuery={_id: new ObjectId(id)}
+  const advertiseQuery={productId:id}
+  const options = { upsert: true };
+    const updateDoc = {
+        $set: {
+          advertise:false
+        },
+      };
+      const result = await advertiseCollection.deleteOne(advertiseQuery)
+      const product = await productsCollection.updateOne(productQuery,updateDoc,options)
+  res.send(result)
+})
 
 module.exports = router
